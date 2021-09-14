@@ -1,0 +1,3 @@
+C:\VSProject\Labs\Semester3\Lab1\main\Debug\main.exe
+C:\VSProject\Labs\Semester3\Lab1\main\Debug\main.pdb
+C:\Users\mariy\Desktop\avt-043\visual studio\3 семак\main\Debug\main.exe
