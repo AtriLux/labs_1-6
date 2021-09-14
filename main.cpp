@@ -28,10 +28,10 @@ int main()
 Books createFunction()
 {
     int page, circ;
-    char* temp = new char[256];
+    char* tempName = new char[256];
     cout << "Введите название, кол-во страниц, тираж:" << endl;
-    cin >> temp >> page >> circ;
-    Books object(page, circ, temp);
-    delete[] temp;
+    cin >> tempName >> page >> circ;
+    Books object(tempName, page, circ);
+    delete[] tempName;
     return object;
 }

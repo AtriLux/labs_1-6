@@ -13,7 +13,7 @@ class Books
 	int circulation;	// тираж
 
 public:
-	Books(int, int, char*);		// Конструктор с параметрами
+	Books(char*, int, int);		// Конструктор с параметрами
 	Books();					// Конструктор по умолчанию
 	Books(const Books& obj);	// Конструктор копирования
 	~Books();

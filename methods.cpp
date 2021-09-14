@@ -1,6 +1,6 @@
 #include "headers.h"
 
-Books::Books(int page, int circ, char* name)
+Books::Books(char* name, int page, int circ)
 {
 	title = new char[strlen(name) + 1];
 	strcpy(title, name);
@@ -14,7 +14,6 @@ Books::Books()
 	circulation = 0;
 	title = new char[1];
 	title[0] = '\0';
-	//delete[] temp;
 }
 
 Books::Books(const Books &B) 
@@ -39,14 +38,16 @@ void Books::Print()
 
 Books Books::Sum(Books Book1)
 {
-	Books Book3;
+	char* tempName = new char[256];
+	Books Book3(tempName, 0, 0);
+	delete[] tempName;
+
 	Book3.countPages = Book1.countPages + countPages;
 	Book3.circulation = Book1.circulation + circulation;
 
 	memcpy(Book3.title, Book1.title, strlen(Book1.title));
 	memcpy(Book3.title + strlen(Book1.title), title, strlen(title) + 1);
 
-	//Book3.Print();
 	return Book3;
 }
 
