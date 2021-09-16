@@ -1,6 +1,17 @@
 #include "headers.h"
 
-Books::Books(char* name, int page, int circ)
+Books Books::createFunction() // функция создания нового объекта класса через конструктор с параметрами
+{
+	int page, circ;
+	char* tempName = new char[256];
+	cout << "\nВведите название, кол-во страниц, тираж:\n";
+	cin >> tempName >> page >> circ;
+	Books object(tempName, page, circ); // конструктор с параметрами
+	delete[] tempName;
+	return object;
+}
+
+Books::Books(char* name, int page, int circ) // конструктор с параметрами
 {
 	title = new char[strlen(name) + 1];
 	strcpy(title, name);
@@ -8,15 +19,15 @@ Books::Books(char* name, int page, int circ)
 	circulation = circ;
 }
 
-Books::Books()
+Books::Books() // конструктор по умолчанию
 {
 	countPages = 0;
 	circulation = 0;
-	title = new char[1];
+	title = new char[256];
 	title[0] = '\0';
 }
 
-Books::Books(const Books &B) 
+Books::Books(const Books &B) // конструктор копирования
 {
 	title = new char[strlen(B.title) + 1];
 	strcpy(title, B.title);
@@ -24,36 +35,32 @@ Books::Books(const Books &B)
 	circulation = B.circulation;
 }
 
-Books::~Books()
+Books::~Books() // деструктор
 {
-	//cout << title;
 	delete [] title;
-	cout << "Desrtuctor" << "\n\n";
 }
 
-void Books::Print()
+void Books::Print() // печать объекта класса
 {
-	cout << "Print\n\ncountPages = " << countPages << endl << "circulation = " << circulation << endl << "title = " << title << "\n\n";
+	cout << "\nНазвание: " << title << endl << "Кол-во страниц: " << countPages << endl << "Тираж: " << circulation << "\n\n";
 }
 
-Books Books::Sum(Books Book1)
+Books Books::Sum(Books Book1) // сложение двух объектов класса
 {
-	char* tempName = new char[256];
-	Books Book3(tempName, 0, 0);
-	delete[] tempName;
+	Books Book3;
 
 	Book3.countPages = Book1.countPages + countPages;
 	Book3.circulation = Book1.circulation + circulation;
 
-	memcpy(Book3.title, Book1.title, strlen(Book1.title));
-	memcpy(Book3.title + strlen(Book1.title), title, strlen(title) + 1);
+	memcpy(Book3.title, title, strlen(title));
+	memcpy(Book3.title + strlen(title), Book1.title, strlen(Book1.title) + 1);
 
 	return Book3;
 }
 
-void Books::Change()
+void Books::Change() // изменение значений объекта класса
 {
-	cout << "Введите новые значения в порядке название, страницы, тираж. Если не хотите менять один из параметров, то введите 0\n\n";
+	cout << "\nВведите новые значения в порядке: название, страницы, тираж. Если не хотите менять один из параметров, то введите 0\n\n";
 
 	int page, circ;
 	char* name = new char[256];
