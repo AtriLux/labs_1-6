@@ -1,12 +1,12 @@
 #define _CRT_SECURE_NO_WARNINGS
 
+#include <locale.h>
 #include <iostream>
 #include <fstream>
 #include <io.h>
 #include <string>
 #include <stdlib.h>
 #include <ctime>
-#include <vector>
 
 using namespace std;
 
@@ -52,7 +52,7 @@ public:
 	List();
 	List(Books&);
 	~List();
-	Node* Next(Node*);
+	Node* getLast();
 	Node* findNode(int);
 	void Print();
 	Node* Add(Books&, Node*);

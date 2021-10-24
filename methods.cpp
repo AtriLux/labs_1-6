@@ -16,7 +16,7 @@ Books::Books() // конструктор по умолчанию
 	title[0] = '\0';
 }
 
-Books::Books(const Books &B) // конструктор копирования
+Books::Books(const Books& B) // конструктор копирования
 {
 	title = new char[strlen(B.title) + 1];
 	strcpy(title, B.title);
@@ -27,7 +27,7 @@ Books::Books(const Books &B) // конструктор копирования
 Books::~Books() // деструктор
 {
 	//cout << "~Books" << endl << title << endl;
-	delete [] title;
+	delete[] title;
 }
 
 void Books::Print() // печать объекта класса
@@ -37,19 +37,19 @@ void Books::Print() // печать объекта класса
 
 void Volume::Print() // печать объекта класса
 {
-	cout << "\nНазвание: " << title << endl << "Кол-во страниц: " << countPages << endl 
+	cout << "\nНазвание: " << title << endl << "Кол-во страниц: " << countPages << endl
 		<< "Тираж: " << circulation << endl << "Том: " << volume << "\n\n";
 }
 
 void Comics::Print() // печать объекта класса
 {
-	cout << "\nНазвание: " << title << endl << "Кол-во страниц: " << countPages << endl 
+	cout << "\nНазвание: " << title << endl << "Кол-во страниц: " << countPages << endl
 		<< "Тираж: " << circulation << endl << "Рейтинг: " << rating << "\n\n";
 }
 
 Books Books::Sum(Books Book1) // сложение двух объектов класса
 {
-	
+
 	char* tempName = new char[strlen(title) + strlen(Book1.title) + 1];
 
 	memcpy(tempName, title, strlen(title));
@@ -87,7 +87,7 @@ void Comics::Rating() {
 	rating = (float)(rand() % 50) / 10.0;
 }
 
-Books Books::operator +(Books &Book1) // перегрузка оператора +
+Books Books::operator +(Books& Book1) // перегрузка оператора +
 {
 	char* tempName = new char[strlen(title) + strlen(Book1.title) + 1];
 
@@ -101,7 +101,7 @@ Books Books::operator +(Books &Book1) // перегрузка оператора +
 	return Book3;
 }
 
-Books &Books::operator ++()
+Books& Books::operator ++()
 {
 	++countPages;
 	++circulation;
@@ -124,12 +124,12 @@ Books Books::operator ++(int)
 	return B;
 }
 
-Books::operator float() 
+Books::operator float()
 {
 	return (float)countPages;
 }
 
-List::List() 
+List::List()
 {
 	Node* nd = new Node;
 	nd->ptr = nd;
@@ -146,7 +146,7 @@ List::List(Books& B)
 	count++;
 }
 
-Node::~Node() 
+Node::~Node()
 {
 	//cout << "~Node" << endl;
 	//book.Print();
@@ -158,20 +158,30 @@ List::~List()
 	//head->book.Print();
 }
 
-Node* List::Next(Node* nd)
-{
-	if (count == 0) { return NULL; }
-	return nd->ptr;
-}
-
 Node* List::findNode(int n)
 {
 	Node* elem = head;
-	while (n != 1) 
+	while (n != 1)
 	{
 		elem = elem->ptr;
 		n--;
 	}
+	return elem;
+}
+
+Node* List::getLast()
+{
+	Node* elem = head;
+	int k = count;
+	do {
+		elem = elem->ptr;
+		k--;
+	} while (k != 0);
+
+	cout << "last\n";
+	elem->book.Print();
+	cout << "-----\n";
+
 	return elem;
 }
 
@@ -187,21 +197,25 @@ void List::Print()
 
 Node* List::Add(Books& B, Node* nd)
 {
-	Node* elem, *p;
+	Node* elem, * p;
 	elem = new Node;
-	if (nd == NULL) 
+	if (nd == NULL)
 	{
 		p = head;
 		head = elem;
+		elem->ptr = p->ptr;
 		p->ptr = elem;
+		elem->book = B;
+
 	}
 	else
 	{
-		p = nd->ptr;	// сохранение указателя на следующий элемент
-		nd->ptr = elem; // предыдущий узел указывает на создаваемый
+		p = nd->ptr;		// сохранение указателя на следующий элемент
+		nd->ptr = elem;		// предыдущий узел указывает на создаваемый
+		elem->book = B;		// сохранение поля данных добавляемого узла
+		elem->ptr = p;		// созданный узел указывает на следующий элемент
 	}
-	elem->book = B;		// сохранение поля данных добавляемого узла
-	elem->ptr = p;		// созданный узел указывает на следующий элемент
+
 	count++;
 	return(elem);
 }

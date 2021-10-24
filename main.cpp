@@ -2,7 +2,7 @@
 
 int l = 0;
 
-Books operator -(Books& B1, Books& B2) 
+Books operator -(Books& B1, Books& B2)
 {
     if (strlen(B1.title) > strlen(B2.title)) {
         char* tempName = new char[strlen(B1.title) - strlen(B2.title) + 1];
@@ -28,7 +28,7 @@ ofstream& operator <<(ofstream& out, Books& B)
     return out;
 }
 
-fstream& operator <<(fstream& out, Books& B) 
+fstream& operator <<(fstream& out, Books& B)
 {
     int p1 = B.countPages, p2, c1 = B.circulation, c2;
     l = strlen(B.title);
@@ -42,7 +42,7 @@ fstream& operator <<(fstream& out, Books& B)
 
 fstream& operator >>(fstream& in, Books& B)
 {
-    char* tempT = new char[l+1];
+    char* tempT = new char[l + 1];
     in.read(tempT, l);
     tempT[l] = '\0';
     int tempP = 0, tempC = 0;
@@ -58,19 +58,19 @@ fstream& operator >>(fstream& in, Books& B)
 int main()
 {
     system("cls");
-    setlocale(LC_ALL, ".ACP");
+    setlocale(LC_ALL, ".APC");
 
-    cout << "Ð¡Ð¾Ð·Ð´Ð°Ð½Ð¸Ðµ Ð¾Ð±ÑŠÐµÐºÑ‚Ð° Ñ Ð¿Ð¾Ð¼Ð¾Ñ‰ÑŒÑŽ ÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€Ð° Ñ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð°Ð¼Ð¸\n";
+    cout << "Ñîçäàíèå îáúåêòà ñ ïîìîùüþ êîíñòðóêòîðà ñ ïàðàìåòðàìè\n";
     int page, circ;
     char* tempName = new char[256];
-    cout << "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ, ÐºÐ¾Ð»-Ð²Ð¾ ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†, Ñ‚Ð¸Ñ€Ð°Ð¶:\n";
+    cout << "\nÂâåäèòå íàçâàíèå, êîë-âî ñòðàíèö, òèðàæ:\n";
     cin >> tempName >> page >> circ;
     Books paramBook(tempName, page, circ);
     //lab 4
     Volume Onegin(tempName, page + 1, circ + 1);
     //Comics SpiderMan(tempName, page, circ);
     delete[] tempName;
-    
+
     Books defaultBook;
 
     /*lab 4
@@ -85,23 +85,23 @@ int main()
     SpiderMan.Print();*/
 
     /*
-    //cout << "Ð¡Ð¾Ð·Ð´Ð°Ð½Ð¸Ðµ Ð¾Ð±ÑŠÐµÐºÑ‚Ð° Ñ Ð¿Ð¾Ð¼Ð¾Ñ‰ÑŒÑŽ ÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€Ð° Ð¿Ð¾ ÑƒÐ¼Ð¾Ð»Ñ‡Ð°Ð½Ð¸ÑŽ\n";
+    //cout << "Ñîçäàíèå îáúåêòà ñ ïîìîùüþ êîíñòðóêòîðà ïî óìîë÷àíèþ\n";
     //Books defaultBook;
     //defaultBook.Print();
     //
-    //cout << "Ð¡Ð¾Ð·Ð´Ð°Ð½Ð¸Ðµ Ð¾Ð±ÑŠÐµÐºÑ‚Ð° Ñ Ð¿Ð¾Ð¼Ð¾Ñ‰ÑŒÑŽ ÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€Ð° ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ\n";
+    //cout << "Ñîçäàíèå îáúåêòà ñ ïîìîùüþ êîíñòðóêòîðà êîïèðîâàíèÿ\n";
     //Books copyBook(paramBook);
     //copyBook.Print();
 
-    //cout << "Ð˜Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ð¹ Ð²Ð½ÑƒÑ‚Ñ€Ð¸ Ð¾Ð±ÑŠÐµÐºÑ‚Ð° ÐºÐ»Ð°ÑÑÐ°, ÑÐ¾Ð·Ð´Ð°Ð½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾ ÑƒÐ¼Ð¾Ð»Ñ‡Ð°Ð½Ð¸ÑŽ\n";
-    //cout << "\nÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð²Ñ‹Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ Ð² Ð¿Ð¾Ñ€ÑÐ´ÐºÐµ: Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ, ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ñ‹, Ñ‚Ð¸Ñ€Ð°Ð¶. Ð•ÑÐ»Ð¸ Ð½Ðµ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ Ð¼ÐµÐ½ÑÑ‚ÑŒ Ð¾Ð´Ð¸Ð½ Ð¸Ð· Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð², Ñ‚Ð¾ Ð²Ð²ÐµÐ´Ð¸Ñ‚Ðµ 0\n\n";
+    //cout << "Èçìåíåíèå çíà÷åíèé âíóòðè îáúåêòà êëàññà, ñîçäàííîãî ïî óìîë÷àíèþ\n";
+    //cout << "\nÂâåäèòå íîâûå çíà÷åíèÿ â ïîðÿäêå: íàçâàíèå, ñòðàíèöû, òèðàæ. Åñëè íå õîòèòå ìåíÿòü îäèí èç ïàðàìåòðîâ, òî ââåäèòå 0\n\n";
     //int page, circ;
     //char* name = new char[256];
     //cin >> name >> page >> circ;
     //defaultBook.Change(name, page, circ);
     //defaultBook.Print();
 
-    //cout << "Ð¡Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ Ð´Ð²ÑƒÑ… Ð¾Ð±ÑŠÐµÐºÑ‚Ð¾Ð² (ÑÐ¾Ð·Ð´Ð°Ð½Ð½Ñ‹Ð¹ Ñ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð°Ð¼Ð¸ + ÑÐ¾Ð·Ð´Ð°Ð½Ð½Ñ‹Ð¹ Ð¿Ð¾ ÑƒÐ¼Ð¾Ð»Ñ‡Ð°Ð½Ð¸ÑŽ Ð¸ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ð½Ñ‹Ð¹)\n";
+    //cout << "Ñëîæåíèå äâóõ îáúåêòîâ (ñîçäàííûé ñ ïàðàìåòðàìè + ñîçäàííûé ïî óìîë÷àíèþ è èçìåíåííûé)\n";
     //Books sumBooks = paramBook.Sum(defaultBook);
     //sumBooks.Print();
 
@@ -109,23 +109,23 @@ int main()
     //pBook->Print();
     //delete pBook;
 
-    //cout << "ÐŸÐµÑ€ÐµÐ³Ñ€ÑƒÐ·ÐºÐ° Ð¾Ð¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€Ð° Ð²Ñ‹Ñ‡Ð¸Ñ‚Ð°Ð½Ð¸Ñ\n";
+    //cout << "Ïåðåãðóçêà îïåðàòîðà âû÷èòàíèÿ\n";
     //Books minBooks = paramBook - defaultBook;
     //minBooks.Print();
 
-    //cout << "ÐŸÐµÑ€ÐµÐ³Ñ€ÑƒÐ·ÐºÐ° Ð¾Ð¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€Ð° ÑÐ»Ð¾Ð¶ÐµÐ½Ð¸Ñ\n";
+    //cout << "Ïåðåãðóçêà îïåðàòîðà ñëîæåíèÿ\n";
     //Books sumBooks = paramBook.operator+(defaultBook);
     //sumBooks.Print();
 
-    //cout << "ÐŸÐµÑ€ÐµÐ³Ñ€ÑƒÐ·ÐºÐ° Ð¾Ð¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€Ð° Ð¿Ñ€ÐµÑ„Ð¸ÐºÑÐ½Ð¾Ð³Ð¾ Ð¸Ð½ÐºÑ€ÐµÐ¼ÐµÐ½Ñ‚Ð°\n";
+    //cout << "Ïåðåãðóçêà îïåðàòîðà ïðåôèêñíîãî èíêðåìåíòà\n";
     //(++sumBooks).Print();
     //sumBooks.Print();
 
-    //cout << "ÐŸÐµÑ€ÐµÐ³Ñ€ÑƒÐ·ÐºÐ° Ð¾Ð¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€Ð° Ð¿Ð¾ÑÑ‚Ñ„Ð¸ÐºÑÐ½Ð¾Ð³Ð¾ Ð¸Ð½ÐºÑ€ÐµÐ¼ÐµÐ½Ñ‚Ð°\n";
+    //cout << "Ïåðåãðóçêà îïåðàòîðà ïîñòôèêñíîãî èíêðåìåíòà\n";
     //(sumBooks++).Print();
     //sumBooks.Print();
 
-    //cout << "ÐŸÐµÑ€ÐµÐ³Ñ€ÑƒÐ·ÐºÐ° Ð¾Ð¿ÐµÑ€Ð°Ñ†Ð¸Ð¸ Ð¿Ñ€Ð¸Ð²ÐµÐ´ÐµÐ½Ð¸Ñ Ñ‚Ð¸Ð¿Ð°\n";
+    //cout << "Ïåðåãðóçêà îïåðàöèè ïðèâåäåíèÿ òèïà\n";
     //cout << fixed;
     //cout.precision(3);
     //cout << float(sumBooks);
@@ -156,11 +156,8 @@ int main()
     */
 
     List list(paramBook);
-    list.Add(defaultBook, NULL);
-    list.Add(Onegin, NULL);
-    //Ð½ÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ð¾ Ñ€Ð°Ð±Ð¾Ñ‚Ð°ÐµÑ‚
-    //Ð¿Ñ€Ð¸ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ð¸ Ð² Ð³Ð¾Ð»Ð¾Ð²Ñƒ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð²ÑÐµÐ³Ð´Ð° ÑƒÐºÐ°Ð·Ñ‹Ð²Ð°ÐµÑ‚ Ð½Ð° ÑÑ‚Ñƒ Ð³Ð¾Ð»Ð¾Ð²Ñƒ
-    //Ñ‚.Ðµ. ÑÑ€Ð°Ð·Ñƒ Ñ‚ÐµÑ€ÑÑŽÑ‚ÑÑ Ð²ÑÐµ Ð¿Ð¾ÑÐ»ÐµÐ´ÑƒÑŽÑ‰Ð¸Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ‹
-    //ÐµÑÐ»Ð¸ Ð´Ð¾Ð±Ð°Ð²Ð»ÑÑ‚ÑŒ Ð½Ðµ Ð² Ð³Ð¾Ð»Ð¾Ð²Ñƒ, Ñ‚Ð¾ Ð²ÑÐµ Ð½Ð¾Ñ€Ð¼
+    list.Add(defaultBook, list.getLast());
+    list.Print();
+    list.Add(Onegin, list.getLast());
     list.Print();
 }
