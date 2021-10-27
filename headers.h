@@ -7,6 +7,10 @@
 #include <string>
 #include <stdlib.h>
 #include <ctime>
+#include <new>
+#include <stdexcept>
+
+#define MAX 256
 
 using namespace std;
 
@@ -55,7 +59,10 @@ public:
 	Node* getLast();
 	Node* findNode(int);
 	void Print();
-	Node* Add(Books&, Node*);
+	void Add(Books&, Node*);
+	void Push(Books&);
+	Node* Del(Node*);
+	Node* Pop();
 	Node* getHead() { return head; };
 };
 

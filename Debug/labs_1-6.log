@@ -1,7 +1,4 @@
 ﻿  main.cpp
 C:\Users\mariy\Desktop\avt-043\3\Prog\labs_1-6\main.cpp(33,52): warning C4101: c2: неиспользованная локальная переменная
 C:\Users\mariy\Desktop\avt-043\3\Prog\labs_1-6\main.cpp(33,28): warning C4101: p2: неиспользованная локальная переменная
-  methods.cpp
-C:\Users\mariy\Desktop\avt-043\3\Prog\labs_1-6\methods.cpp(87,32): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-  Создание кода...
   labs_1-6.vcxproj -> C:\Users\mariy\Desktop\avt-043\3\Prog\labs_1-6\Debug\labs_1-6.exe

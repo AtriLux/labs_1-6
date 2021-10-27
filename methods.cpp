@@ -161,11 +161,18 @@ List::~List()
 Node* List::findNode(int n)
 {
 	Node* elem = head;
-	while (n != 1)
+	
+	cout << "find" << n << endl;
+
+	while (n != 0)
 	{
 		elem = elem->ptr;
 		n--;
 	}
+
+	elem->book.Print();
+	cout << "-----\n";
+
 	return elem;
 }
 
@@ -173,14 +180,15 @@ Node* List::getLast()
 {
 	Node* elem = head;
 	int k = count;
-	do {
+	while (k != 1) 
+	{
 		elem = elem->ptr;
 		k--;
-	} while (k != 0);
+	};
 
-	cout << "last\n";
-	elem->book.Print();
-	cout << "-----\n";
+	//cout << "last\n";
+	//elem->book.Print();
+	//cout << "-----\n";
 
 	return elem;
 }
@@ -195,16 +203,16 @@ void List::Print()
 	} while (p != head);
 }
 
-Node* List::Add(Books& B, Node* nd)
+void List::Add(Books& B, Node* nd)
 {
-	Node* elem, * p;
-	elem = new Node;
+	Node* elem = new Node, *p;
 	if (nd == NULL)
 	{
+		getLast()->ptr = elem;
 		p = head;
 		head = elem;
-		elem->ptr = p->ptr;
-		p->ptr = elem;
+
+		elem->ptr = p;
 		elem->book = B;
 
 	}
@@ -217,5 +225,43 @@ Node* List::Add(Books& B, Node* nd)
 	}
 
 	count++;
+}
+
+void List::Push(Books& B) 
+{
+	Node* elem = new Node, *p, *nd = getLast();
+
+	p = nd->ptr;		
+	nd->ptr = elem;		
+	elem->book = B;		
+	elem->ptr = p;
+
+	count++;
+}
+
+Node* List::Del(Node* elem) {
+	Node* p;
+
+	p = elem;
+	while (p->ptr != elem) // поиск предыдущего узла
+	{
+		p = p->ptr;
+	}
+	p->ptr = elem->ptr;
+	count--;
+
+	return(elem);
+}
+
+Node* List::Pop() {
+	Node* p = getLast(), *elem = getLast();
+
+	while (p->ptr != elem) // поиск предыдущего узла
+	{
+		p = p->ptr;
+	}
+	p->ptr = elem->ptr;
+	count--;
+
 	return(elem);
 }
